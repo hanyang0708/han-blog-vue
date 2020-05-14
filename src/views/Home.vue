@@ -1,26 +1,30 @@
 <template>
-    <el-container class="All-100">
-        <el-header class="header">
-            <Header />
-        </el-header>
-        <router-view class="flex-1"></router-view>
-        <Footer />
+    <el-container class="height-0">
+        <el-main class="height-100 overflow-hidden bothSides" style="flex:1;text-align:right">
+            
+        </el-main>
+        <el-main class="height-100 overflow-hidden" style="flex:3">
+            <router-view class="flex-1"></router-view>
+        </el-main>
+        <el-main class="height-100 overflow-hidden bothSides" style="flex:1">
+            <el-button type="primary" plain @click="onWritingClick" icon="el-icon-edit">开始写作</el-button>
+        </el-main>
     </el-container>
 </template>
 
 <script>
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 export default {
-    components: {
-        Header,
-        Footer
+    methods:{
+        onWritingClick() {
+            this.$router.push({path:'/createEssay'})
+        }
     }
 }
 </script>
 
 <style scoped>
-    .header {
-        border-bottom: 1px solid #f8f8f8;
+    .bothSides{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 </style>

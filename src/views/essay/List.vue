@@ -1,33 +1,57 @@
 <template>
-    <el-container class="height-0">
-        <el-main class="height-100 overflow-hidden" style="flex:1;text-align:right">
-            左边栏
-        </el-main>
-        <el-main class="height-100 overflow-hidden" style="flex:3">
-            <ul class="height-100 scroll" v-infinite-scroll="load" style="overflow:auto">
-                <li v-for="i in 20" class="infinite-list-item" :key="i">
-                    <ListItem/> 
-                </li>
-            </ul>
-        </el-main>
-        <el-main class="height-100 overflow-hidden" style="flex:1">
-            <el-button type="primary" plain @click="onWritingClick" icon="el-icon-edit">开始写作</el-button>
-        </el-main>
-    </el-container>
+    <ul class="height-100 scroll" v-infinite-scroll="load" style="overflow:auto" infinite-scroll-disabled="disabled">
+        <li v-for="value in listData" class="infinite-list-item" :key="value.id">
+            <ListItem :itemInfo='value'/> 
+        </li>
+        <p v-if="loading" class="loading">加载中...</p>
+        <p v-if="noMore" class="loading">没有更多了</p>
+    </ul>
 </template>
 
 <script>
 import ListItem from '@/components/essay/ListItem'
+import { essayService } from '@/api'
 
 export default {
-
+    data() {
+        return {
+            loading: false,
+            pageNum: 1,
+            listData: [],
+            noMore: false
+        }
+    },
+    computed: {
+        disabled () {
+            return this.loading || this.noMore
+        }
+    },
     methods: {
         load () {
-            console.log('到底部了吗')
+            this.pageNum += 1;
+            this.queryEssayList()
         },
-        onWritingClick() {
-            this.$router.push({path:'/essay/create'})
+        queryEssayList() {
+            this.loading = true;
+            essayService.queryEssayList({
+                pageNum: this.pageNum,
+                pageSize: 10
+            }).then(res=>{
+                this.listData = [
+                    ...this.listData,
+                    ...res.data
+                ];
+                this.loading = false;
+                if(!res.data.length){
+                    this.noMore = true;
+                }
+            }).catch(err=>{
+                console.log(err,'queryEssayList')
+            })
         }
+    },
+    created() {
+        this.queryEssayList()
     },
     components: {
         ListItem
@@ -53,5 +77,10 @@ export default {
     }
     .scroll::-webkit-scrollbar-thumb:hover{
         background: #1989fa;
+    }
+    .loading {
+        font-size: 12px;
+        text-align: center;
+        color: #ccc;
     }
 </style>

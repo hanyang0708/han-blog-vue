@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { userService } from '@/api'
+
 export default {
     data() {
         return {
@@ -51,8 +53,21 @@ export default {
     },
     methods: {
         onRegisterClick() {
-            this.$message.success('注册成功！快快登录吧！');
-            this.$emit('success');
+            if(this.registerForm.userPwd !== this.registerForm.confirmPwd){
+                this.$message.warning('两次密码不一致哦，请亲重新输入呀')
+                return
+            }
+            userService.register({
+                userName: this.registerForm.userName,
+                userPwd: this.registerForm.userPwd,
+                nickName: this.registerForm.nickName,
+            }).then(res=>{
+                this.$message.success('注册成功！快快登录吧！');
+                this.$emit('success');
+            }).catch(err=>{
+                console.log(err)
+                this.$message.error(err.res.message);
+            })
         }
     }
 }

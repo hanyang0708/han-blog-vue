@@ -19,6 +19,7 @@ import {
     Input,
     Message,
     Footer,
+    Dialog,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -37,6 +38,7 @@ Vue.use(Button)
     .use(FormItem)
     .use(Input)
     .use(Footer)
+    .use(Dialog)
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 

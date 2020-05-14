@@ -1,5 +1,5 @@
 <template>
-    <div class="All-100 flex flex-column">
+    <div class="height-100 flex flex-column">
         <div class="title">
             <h1 class="logo theme-color">Han's Blog</h1>
         </div>
@@ -22,14 +22,12 @@
                 </el-card>
             </div>
         </div>
-        <Footer />
     </div>
 </template>
 
 <script>
 import Login from '@/components/login/Login';
 import Register from '@/components/login/Register';
-import Footer from '@/components/layout/Footer'
 
 export default {
     data() {
@@ -45,7 +43,6 @@ export default {
     components: {
         Login,
         Register,
-        Footer
     }
 }
 </script>

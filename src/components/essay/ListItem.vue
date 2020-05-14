@@ -2,15 +2,15 @@
     <div class="pb-20 card mb-20">
         <div class="header" @click="onTilteClick">
             <h1 class="title font-title-color">
-                Divider 分割线
+                {{itemInfo.title}}
             </h1>
         </div>
         <div class="content">
-            先要对职业读书人的背景有两个认识： 1、职业读书人得益于现代的信息爆炸，更侧重于筛选。所以职业读书人能产生拆选价值。 2、行业还处于野蛮生长期，...
+            {{itemInfo.preview}}
         </div>
         <div class="footer">
-            <span>日期</span>
-            <span class='ml-15'>阅读量</span>
+            <span>{{ $moment(itemInfo.createTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
+            <span class='ml-15'>阅读量：{{itemInfo.readNum}}</span>
             <span class='ml-15'>点赞量</span>
         </div>
     </div>
@@ -18,9 +18,15 @@
 
 <script>
 export default {
+    props: {
+        itemInfo: {
+            type: Object
+        }
+    },
     methods: {
         onTilteClick() {
-            
+            console.log()
+            this.$router.push({name:'essayInfo',params: {id:this.itemInfo.id}})
         }
     }
 }
