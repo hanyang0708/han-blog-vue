@@ -1,8 +1,16 @@
 <template>
-    <div class="headerImg flex flex-middle">
-        <span>{{$store.getters.getUserInfo.nickName}}</span>
-        <img :src='HeaderImg' alt="">
-    </div>
+    <el-dropdown>
+        <div class="headerImg flex flex-middle">
+            <span>{{$store.getters.getUserInfo.nickName}}</span>
+            <img :src='HeaderImg' alt="">
+        </div>
+        <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>修改头像</el-dropdown-item>
+            <el-dropdown-item>修改密码</el-dropdown-item>
+            <el-dropdown-item>修改昵称</el-dropdown-item>
+            <el-dropdown-item>我的文章</el-dropdown-item>
+        </el-dropdown-menu>
+    </el-dropdown>
 </template>
 <script>
 import HeaderImg from '@/assets/Header.jpg'

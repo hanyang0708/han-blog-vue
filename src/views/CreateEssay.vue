@@ -38,7 +38,7 @@
 <script>
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-import { essayService } from '@/api'
+import { essayService, uploadService } from '@/api'
 
 export default {
     data() {
@@ -60,8 +60,11 @@ export default {
             this.$router.go(-1);
         },
         $imgAdd(pos, $file){
-            console.log($file);
-            this.$refs.md.$img2Url(pos, '123');
+            let date = new Date().getTime();
+            this.getUploadUrl(date + $file.name, $file,(url)=>{
+                url = url.substring(0, url.indexOf('?'))
+                this.$refs.md.$img2Url(pos, url);
+            });
         },
         onSaveClick() {
             this.centerDialogVisible = true;
@@ -78,6 +81,21 @@ export default {
                 this.$router.push({path:'/'});
             }).catch(err=>{
                 console.log(err,'创建失败')
+            })
+        },
+        getUploadUrl(name,file,callBack) {
+            uploadService.getUploadUrl({
+                name,
+                type: 2
+            }).then(res=>{
+                console.log(res);
+                uploadService.uploadImg(res.data.url,file).then(response=>{
+                    callBack(res.data.url);
+                }).catch(()=>{
+                    this.$message.error('图片上传失败');
+                })
+            }).catch(err=>{
+                console.log(err);
             })
         }
     },

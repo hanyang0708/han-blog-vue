@@ -21,6 +21,9 @@ import {
     Footer,
     Dialog,
     Switch,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -41,6 +44,9 @@ Vue.use(Button)
     .use(Footer)
     .use(Dialog)
     .use(Switch)
+    .use(Dropdown)
+    .use(DropdownMenu)
+    .use(DropdownItem)
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 

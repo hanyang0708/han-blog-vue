@@ -12,7 +12,7 @@
 
         <div class="flex flex-1 flex-between">
             <el-button plain @click="onWritingClick" icon="el-icon-edit" size="small" >开始写作</el-button>
-            <HeaderImg v-if="$store.getters.getUserInfo.id"/>
+            <HeaderImg v-if="$store.getters.getUserInfo && $store.getters.getUserInfo.id"/>
             <el-button size="small" @click="onLoginClick" v-else type="primary">登录</el-button>
         </div>
     </div>

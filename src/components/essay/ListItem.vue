@@ -11,7 +11,7 @@
         <div class="footer">
             <span>{{ $moment(itemInfo.createTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
             <span class='ml-15'>阅读量：{{itemInfo.readNum}}</span>
-            <span class='ml-15'>点赞量</span>
+            <!-- <span class='ml-15'>点赞量</span> -->
         </div>
     </div>
 </template>

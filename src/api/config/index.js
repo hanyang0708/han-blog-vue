@@ -22,11 +22,11 @@ axios.interceptors.request.use(function (config) {
 // 添加响应拦截器
 axios.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if(response.data.res.code == 1){
+    if(response.data && response.data.res.code == 1){
         store.dispatch('setToken','');
         router.push({path:'/login'});
     }
-    if(!response.data.res.success){
+    if(response.data && !response.data.res.success){
         return Promise.reject(response.data)
     }
     return response.data;
