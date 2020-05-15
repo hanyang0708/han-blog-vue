@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         onTilteClick() {
-            console.log()
             this.$router.push({name:'essayInfo',params: {id:this.itemInfo.id}})
         }
     }
@@ -34,7 +33,8 @@ export default {
 
 <style scoped>
     .card {
-        border-bottom: 1px solid #ddd;
+        margin-right: 20px;
+        border-bottom: 1px solid #eee;
     }
     .header{
         cursor: pointer;

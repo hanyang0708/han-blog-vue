@@ -17,9 +17,14 @@
                 :scrollStyle='true'
             />
         </div>
-        <div class="footer">
-            <span>{{$moment(essayInfo.createTime).format('YYYY-MM-DD HH:mm:ss')}}</span>
-            <span class="ml-20">阅读量：{{essayInfo.readNum}}</span>
+        <div class="footer flex flex-between">
+            <div>
+                <span>{{$moment(essayInfo.createTime).format('YYYY-MM-DD HH:mm:ss')}}</span>
+                <span class="ml-20">阅读量：{{essayInfo.readNum}}</span>
+            </div>
+            <div>
+                作者：{{essayInfo.nickName}}
+            </div>
         </div>
     </div>
 </template>
@@ -43,6 +48,7 @@ export default {
                 id: this.id
             }).then(res=>{
                 this.essayInfo = res.data;
+                console.log(res.data);
             }).catch(err=>{
 
             })
