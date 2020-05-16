@@ -15,7 +15,7 @@
                 <!-- <span class='ml-15'>点赞量</span> -->
             </div>
 
-            <div v-if="$route.name == 'myEssay'">
+            <div v-if="$route.name == 'myList'">
                 <el-link :underline="false" style="font-size: 12px;" @click="onEditClick">编辑</el-link>
                 <el-link  slot="reference" :underline="false" type="danger" class="ml-20" style="font-size: 12px;" @click="delEssayClick">删除</el-link>
             </div>

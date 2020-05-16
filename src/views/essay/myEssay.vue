@@ -6,7 +6,7 @@
             </div>
 
             <div class="ml-20">
-                <h5 class="user_name">用户名</h5>
+                <h5 class="user_name">{{$store.getters.getUserInfo.nickName}}</h5>
                 <p class="essay_num">文章数量：{{total}}</p>
             </div>
         </div>

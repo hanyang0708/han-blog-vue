@@ -12,5 +12,7 @@ export const uploadHeaderImg = (params)=>{
     return axios.post('/upload/headerImg',params);
 }
 
-
+export const uploadNickName = (params)=>{
+    return axios.post('/uploadNickName',params);
+}
 

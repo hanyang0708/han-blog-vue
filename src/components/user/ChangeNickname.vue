@@ -8,6 +8,7 @@
     </el-dialog>
 </template>
 <script>
+import { userService, } from '@/api'
 export default {
     data() {
         return {
@@ -16,13 +17,27 @@ export default {
     },
     methods: {
         submit() {
+            let nickName = this.nickName.trim();
+            if(nickName == ''){
+                this.$message.warning('昵称不能为空！');
+                return 
+            }
+            userService.uploadNickName({
+                nickName,
+                id: this.$store.getters.getUserInfo.id
+            }).then(res=>{
+                this.$store.dispatch('setUserInfo',res.data);
+                this.$message.success('修改成功');
+            }).catch(err=>{
+                this.$message.error('修改失败，请稍后重试');
+            })
             this.$emit('cloneChangeNickModal');
         },
         handleClose() {
             this.$emit('cloneChangeNickModal');
         }
     }
-  };
+};
 </script>
 <style scoped>
 </style>

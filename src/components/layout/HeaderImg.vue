@@ -9,7 +9,7 @@
                 <div @click="changeHeaderImgClick">修改头像</div>
                 <input type="file" name="file" accept="image/*" ref="upload" style="display:none" @change="uploadChange">
             </el-dropdown-item>
-            <el-dropdown-item><div @click="onChangePwd">修改密码</div></el-dropdown-item>
+            <!-- <el-dropdown-item><div @click="onChangePwd">修改密码</div></el-dropdown-item> -->
             <el-dropdown-item><div @click="onChangNickClick">修改昵称</div></el-dropdown-item>
             <el-dropdown-item>
                 <div @click="onMyEssayClick">我的文章</div>
@@ -37,14 +37,6 @@ export default {
             isChangePwd : false,
         }
     },
-        
-    created(){
-        
-    },
-    components: {
-        ChangeNickname,
-        ChangePassWord
-    },
     methods : {
         onChangNickClick(){
             this.isChangNickName = true;
@@ -67,13 +59,16 @@ export default {
         uploadChange() {
             this.imgUrl = window.URL.createObjectURL(this.$refs.upload.files[0])
             this.isChangeHImgModal = true;
+            this.$refs.upload.value = ''
         },
         cloneChangeHIM() {
             this.isChangeHImgModal = false;
         }
     },
     components: {
-        ChangeHeaderImg
+        ChangeHeaderImg,
+        ChangeNickname,
+        ChangePassWord
     }
 }
 </script>
