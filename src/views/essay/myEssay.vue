@@ -2,7 +2,7 @@
     <div class="flex flex-column height-100">
         <div class="header flex flex-middle pb-20">
             <div class="header_img">
-                <img :src="HeaderImg" alt="">
+                <img :src="$store.getters.getUserInfo.headerImg || HeaderImg" alt="">
             </div>
 
             <div class="ml-20">

@@ -7,3 +7,10 @@ export const login = (params)=>{
 export const register = (params)=>{
     return axios.post('/register',params);
 }
+
+export const uploadHeaderImg = (params)=>{
+    return axios.post('/upload/headerImg',params);
+}
+
+
+
