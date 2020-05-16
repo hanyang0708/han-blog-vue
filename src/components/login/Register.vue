@@ -53,14 +53,23 @@ export default {
     },
     methods: {
         onRegisterClick() {
-            if(this.registerForm.userPwd !== this.registerForm.confirmPwd){
+            let userName = this.registerForm.userName.trim();
+            let userPwd = this.registerForm.userPwd.trim();
+            let nickName = this.registerForm.nickName.trim();
+            let confirmPwd = this.registerForm.confirmPwd.trim();
+            if(userPwd !== confirmPwd){
                 this.$message.warning('两次密码不一致哦，请亲重新输入呀')
                 return
             }
+            if(userName=='' || userPwd == '' || nickName == ""){
+                this.$message.warning('用户名、密码、昵称不能为空或空格！')
+                return
+            }
+
             userService.register({
-                userName: this.registerForm.userName,
-                userPwd: this.registerForm.userPwd,
-                nickName: this.registerForm.nickName,
+                userName,
+                userPwd,
+                nickName,
             }).then(res=>{
                 this.$message.success('注册成功！快快登录吧！');
                 this.$emit('success');
