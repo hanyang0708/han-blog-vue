@@ -24,6 +24,9 @@ import {
     Dropdown,
     DropdownMenu,
     DropdownItem,
+    Link,
+    MessageBox,
+    Alert,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -47,6 +50,8 @@ Vue.use(Button)
     .use(Dropdown)
     .use(DropdownMenu)
     .use(DropdownItem)
+    .use(Link)
+    .use(Alert)
 
 Vue.component(CollapseTransition.name, CollapseTransition)
 
@@ -75,3 +80,4 @@ let elMessage = {
 }
 
 Vue.prototype.$message = elMessage;
+Vue.prototype.$confirm = MessageBox.confirm;

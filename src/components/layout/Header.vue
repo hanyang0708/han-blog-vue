@@ -1,7 +1,7 @@
 <template>
     <div class="height-100 flex flex-middle header">
         <div class="flex-1">
-            <h1 class="logo theme-color">Han's Blog</h1>
+            <h1 class="logo theme-color" @click="goToIndexClick">Han's Blog</h1>
         </div>
 
         <div class="height-100 flex flex-middle" style="flex-direction:row-reverse;flex:3">
@@ -27,6 +27,9 @@ export default {
         },
         onWritingClick() {
             this.$router.push({path:'/createEssay'})
+        },
+        goToIndexClick() {
+            this.$router.push({path:'/'})
         }
     },
     components: {
@@ -39,6 +42,7 @@ export default {
     .logo {
         font-size: 20px;
         font-weight: bolder;
+        cursor: pointer;
     }
     .header {
         padding: 0px 100px;

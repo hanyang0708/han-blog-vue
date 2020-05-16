@@ -37,12 +37,29 @@ const routes = [
                     needLogin: false
                 }
             },
+            {
+                path: '/essay/myList',
+                name: 'myList',
+                component: () => import('@/views/essay/myEssay'),
+                meta: {
+                    needLogin: true
+                }
+            },
         ]
     },
     {
         path: '/createEssay',
         name: '创作文章',
         component: () => import('@/views/CreateEssay'),
+        meta: {
+            needLogin: true
+        }
+    },
+    {
+        path: '/updateEssay:id',
+        name: 'updateEssay',
+        component: () => import('@/views/CreateEssay'),
+        props: true,
         meta: {
             needLogin: true
         }

@@ -8,15 +8,24 @@
         <div class="content">
             {{itemInfo.preview}}
         </div>
-        <div class="footer">
-            <span>{{ $moment(itemInfo.createTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
-            <span class='ml-15'>阅读量：{{itemInfo.readNum}}</span>
-            <!-- <span class='ml-15'>点赞量</span> -->
+        <div class="footer flex flex-between">
+            <div>
+                <span>{{ $moment(itemInfo.createTime).format('YYYY-MM-DD HH:mm:ss') }}</span>
+                <span class='ml-15'>阅读量：{{itemInfo.readNum}}</span>
+                <!-- <span class='ml-15'>点赞量</span> -->
+            </div>
+
+            <div>
+                <el-link :underline="false" style="font-size: 12px;" @click="onEditClick">编辑</el-link>
+                <el-link  slot="reference" :underline="false" type="danger" class="ml-20" style="font-size: 12px;" @click="delEssayClick">删除</el-link>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { essayService } from '@/api'
+
 export default {
     props: {
         itemInfo: {
@@ -26,6 +35,24 @@ export default {
     methods: {
         onTilteClick() {
             this.$router.push({name:'essayInfo',params: {id:this.itemInfo.id}})
+        },
+        delEssayClick() {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                essayService.deleteEssay({
+                    id: this.itemInfo.id,
+                    userId: this.$store.getters.getUserId,
+                }).then(res=>{
+                    this.$message.success('删除成功')
+                    this.$emit('delSuccess');
+                })
+            })
+        },
+        onEditClick() {
+            this.$router.push({name:'updateEssay',params:{id:this.itemInfo.id}});
         }
     }
 }

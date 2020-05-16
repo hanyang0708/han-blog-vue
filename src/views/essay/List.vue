@@ -79,24 +79,5 @@ export default {
 </script>
 
 <style scoped>
-    .scroll::-webkit-scrollbar{
-        width:3px;
-        height:5px;
-    }
-    .scroll::-webkit-scrollbar-track{
-        background: rgb(239, 239, 239);
-        border-radius:2px;
-    }
-    .scroll::-webkit-scrollbar-thumb{
-        background: #bfbfbf;
-        border-radius:10px;
-    }
-    .scroll::-webkit-scrollbar-thumb:hover{
-        background: #1989fa;
-    }
-    .loading {
-        font-size: 12px;
-        text-align: center;
-        color: #ccc;
-    }
+    
 </style>

@@ -8,7 +8,9 @@
             <el-dropdown-item>修改头像</el-dropdown-item>
             <el-dropdown-item>修改密码</el-dropdown-item>
             <el-dropdown-item>修改昵称</el-dropdown-item>
-            <el-dropdown-item>我的文章</el-dropdown-item>
+            <el-dropdown-item>
+                <div @click="onMyEssayClick">我的文章</div>
+            </el-dropdown-item>
         </el-dropdown-menu>
     </el-dropdown>
 </template>
@@ -20,8 +22,10 @@ export default {
             HeaderImg,
         }
     },
-    created(){
-        console.log('123')
+    methods: {
+        onMyEssayClick() {
+            this.$router.push({name:'myList'});
+        }
     }
 }
 </script>

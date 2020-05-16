@@ -41,6 +41,7 @@ import 'mavon-editor/dist/css/index.css'
 import { essayService, uploadService } from '@/api'
 
 export default {
+    props:['id'],
     data() {
         return {
             centerDialogVisible: false,
@@ -70,6 +71,20 @@ export default {
             this.centerDialogVisible = true;
         },
         submitClick() {
+            if(this.id){
+                essayService.updateEssay({
+                    id: this.id,
+                    title: this.title, 
+                    preview: this.preview, 
+                    content: this.mdCon, 
+                    userId: this.$store.getters.getUserId
+                }).then(res=>{
+                    this.$message.success('编辑成功！感谢您的分享');
+                    this.$router.go(-1);
+                })
+
+                return
+            }
             essayService.createEssay({
                 title: this.title, 
                 preview: this.preview, 
@@ -97,6 +112,19 @@ export default {
             }).catch(err=>{
                 console.log(err);
             })
+        },
+        queryEssayById() {
+            essayService.queryEssayById({
+                id: this.id
+            }).then(res=>{
+                this.mdCon = res.data.content;
+                this.title = res.data.title;
+            })
+        }
+    },
+    created(){
+        if(this.id){
+            this.queryEssayById();
         }
     },
     components: {
