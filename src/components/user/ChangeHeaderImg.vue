@@ -47,7 +47,7 @@ export default {
         handok() {
             this.loading = true
             this.$refs.cropper.getCropBlob((data) => {
-                let fileName = this.$store.getters.getUserId + '.' + data.type.substr(data.type.indexOf('/') + 1);
+                let fileName = new Date().getTime() + this.$store.getters.getUserId + '.' + data.type.substr(data.type.indexOf('/') + 1);
                 uploadService.getUploadUrl({
                     name: fileName,
                     type: 1
