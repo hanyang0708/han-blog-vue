@@ -33,7 +33,7 @@ export default {
         }
     },
     components: {
-        HeaderImg
+        HeaderImg,
     }
 }
 </script>

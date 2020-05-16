@@ -9,28 +9,55 @@
                 <div @click="changeHeaderImgClick">修改头像</div>
                 <input type="file" name="file" accept="image/*" ref="upload" style="display:none" @change="uploadChange">
             </el-dropdown-item>
-            <el-dropdown-item>修改密码</el-dropdown-item>
-            <el-dropdown-item>修改昵称</el-dropdown-item>
+            <el-dropdown-item><div @click="onChangePwd">修改密码</div></el-dropdown-item>
+            <el-dropdown-item><div @click="onChangNickClick">修改昵称</div></el-dropdown-item>
             <el-dropdown-item>
                 <div @click="onMyEssayClick">我的文章</div>
             </el-dropdown-item>
         </el-dropdown-menu>
 
         <ChangeHeaderImg :imgUrl='imgUrl' v-if="isChangeHImgModal" @clone='cloneChangeHIM'/>
+        <ChangeNickname v-if="isChangNickName" @cloneChangeNickModal='cloneChangeNickModal'/>
+        <ChangePassWord v-if="isChangePwd"  @cloneChangePwdModal='cloneChangePwdModal'/>
     </el-dropdown>
+    
 </template>
 <script>
 import HeaderImg from '@/assets/Header.jpg'
 import ChangeHeaderImg from '@/components/user/ChangeHeaderImg'
+import ChangeNickname from './../user/ChangeNickname'
+import ChangePassWord from './../user/ChangePassWord'
 export default {
     data(){
         return {
             HeaderImg,
             imgUrl: '',
             isChangeHImgModal: false,
+            isChangNickName :false,
+            isChangePwd : false,
         }
     },
-    methods: {
+        
+    created(){
+        
+    },
+    components: {
+        ChangeNickname,
+        ChangePassWord
+    },
+    methods : {
+        onChangNickClick(){
+            this.isChangNickName = true;
+        },
+        cloneChangeNickModal() {
+            this.isChangNickName = false;
+        },
+        onChangePwd(){
+            this.isChangePwd = true;
+        },
+        cloneChangePwdModal(){
+            this.isChangePwd = false;
+        },
         onMyEssayClick() {
             this.$router.push({name:'myList'});
         },
