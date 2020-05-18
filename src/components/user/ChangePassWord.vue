@@ -1,12 +1,17 @@
 <template>
     <el-dialog title="修改密码" :visible='true' width="30%" :before-close="handleClose" >
         <div class="flex flex-middle">
-            <label>旧密码:</label>
+            <label style="position:relative;top:-5px">旧密码:</label>
             <el-input class="el-input"  placeholder="请输入旧密码" prepend="123   " v-model="olderPwd" size="small" @blur="blurVal($event)"></el-input>
         </div>
-        
-        <el-input class="el-input" placeholder="请输入新密码" v-model="newPwd" size="small" @blur="blurVal($event)"></el-input>
-        <el-input  placeholder="确认密码" v-model="subPwd" size="small" @blur="blurVal($event)"></el-input>
+        <div>
+            <label>新密码:</label>
+            <el-input class="el-input" placeholder="请输入新密码" v-model="newPwd" size="small" @blur="blurVal($event)"></el-input>
+        </div>
+        <div>
+            <label>确认密码:</label>
+            <el-input  placeholder="确认密码" v-model="subPwd" size="small" @blur="blurVal($event)"></el-input>
+        </div>
         <span slot="footer" class="dialog-footer">
             <el-button @click="$emit('cloneChangePwdModal')" size="small">取 消</el-button>
             <el-button type="primary" @click="submit" size="small">确 定</el-button>
@@ -53,8 +58,16 @@ export default {
 }
 </script>
 <style scoped>
-    .el-input{
+    div{
         margin-bottom: 10px;
+    }
+    div label{
+        display: inline-block;
+        width: 60px;
+        text-align: right;
+        margin-right: 10px;
+    }
+    .el-input{
         width: 300px;
     }
 </style>
