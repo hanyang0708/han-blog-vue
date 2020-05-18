@@ -4,9 +4,11 @@ import router from '@/router'
 
 axios.defaults.timeout = 20000;
 
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://ux28965554.zicp.vip';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
